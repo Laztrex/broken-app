@@ -1,22 +1,18 @@
-use broken_app::{algo, leak_buffer, normalize, sum_even};
+use broken_app::{algo, concurrency, leak_buffer, normalize, sum_even, average_positive};
 
 #[test]
 fn sums_even_numbers() {
-    let nums = [1, 2, 3, 4];
-    // Ожидаем корректное суммирование: 2 + 4 = 6.
-    assert_eq!(sum_even(&nums), 6);
+    assert_eq!(sum_even(&[1,2,3,4]), 6);
 }
 
 #[test]
 fn counts_non_zero_bytes() {
-    let data = [0_u8, 1, 0, 2, 3];
-    assert_eq!(leak_buffer(&data), 3);
+    assert_eq!(leak_buffer(&[0,1,0,2,3]), 3);
 }
 
 #[test]
 fn dedup_preserves_uniques() {
-    let uniq = algo::slow_dedup(&[5, 5, 1, 2, 2, 3]);
-    assert_eq!(uniq, vec![1, 2, 3, 5]); // порядок и состав важны
+    assert_eq!(algo::slow_dedup(&[5,5,1,2,2,3]), vec![1,2,3,5]);
 }
 
 #[test]
@@ -27,11 +23,17 @@ fn fib_small_numbers() {
 #[test]
 fn normalize_simple() {
     assert_eq!(normalize(" Hello World "), "helloworld");
+    assert_eq!(normalize("Hello\t\tWorld"), "helloworld");
 }
 
 #[test]
 fn averages_only_positive() {
-    let nums = [-5, 5, 15];
-    // Ожидается (5 + 15) / 2 = 10, но текущая реализация делит на все элементы.
-    assert!((broken_app::average_positive(&nums) - 10.0).abs() < f64::EPSILON);
+    assert!((average_positive(&[-5,5,15]) - 10.0).abs() < f64::EPSILON);
+    assert_eq!(average_positive(&[]), 0.0);
+    assert_eq!(average_positive(&[-1,-2]), 0.0);
+}
+
+#[test]
+fn race_increment_is_correct() {
+    assert_eq!(concurrency::race_increment(1000,4), 4000);
 }

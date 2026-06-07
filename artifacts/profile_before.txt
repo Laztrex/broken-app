@@ -1,0 +1,75 @@
+Analysis of sampling demo (pid 50571) every 1 millisecond
+Process:         demo [50571]
+Path:            /Users/USER/*/demo
+Load Address:    0x1021f8000
+Identifier:      demo
+Version:         ???
+Code Type:       ARM64
+Parent Process:  zsh [36639]
+Target Type:     live task
+
+Date/Time:       2026-06-06 22:56:30.781 +0300
+Launch Time:     2026-06-06 22:56:30.760 +0300
+OS Version:      macOS 26.3.1 (25D2128)
+Report Version:  7
+Analysis Tool:   /usr/bin/sample
+----
+
+Call graph:
+    328 Thread_12401355: Main Thread
+    + 313 _dyld_start  (in dyld) + 0  [0x1024b49c0]
+    + 10 start  (in dyld) + 6060  [0x1024b88f0]
+    + ! 10 dyld4::ExternallyViewableState::createMinimalInfo(lsl::Allocator&, unsigned long long, char const*, unsigned long long, char const*, DyldSharedCache const*)  (in dyld) + 1660  [0x102500498]
+    + !   10 dyld4::ExternallyViewableState::triggerNotifications(dyld_image_mode, unsigned int, dyld_image_info const*)  (in dyld) + 264  [0x102500c6c]
+    + !     10 dyld4::RemoteNotificationResponder::blockOnSynchronousEvent(unsigned int)  (in dyld) + 48  [0x1024e9a30]
+    + !       10 dyld4::RemoteNotificationResponder::sendMessage(int, unsigned int, mach_msg_header_t*)  (in dyld) + 220  [0x1024e96a4]
+    + !         10 mach_msg_overwrite  (in dyld) + 244  [0x102538b64]
+    + !           10 mach_msg2_internal  (in dyld) + 76  [0x1025389b8]
+    + !             10 mach_msg2_trap  (in dyld) + 8  [0x1024b172c]
+    + 3 start  (in dyld) + 7104  [0x195c39d04]
+    + ! 3 dyld4::prepare(dyld4::APIs&, mach_o::Header const*)  (in dyld) + 2996  [0x195c3b0e4]
+    + !   3 dyld4::RuntimeState::notifyDebuggerLoad(std::span<dyld4::Loader const*, 18446744073709551615ul> const&)  (in dyld) + 432  [0x195c4a184]
+    + !     3 dyld4::ExternallyViewableState::addImages(lsl::Allocator&, lsl::Allocator&, std::span<dyld4::ExternallyViewableState::ImageInfo, 18446744073709551615ul> const&)  (in dyld) + 544  [0x195c8207c]
+    + !       3 dyld4::ExternallyViewableState::triggerNotifications(dyld_image_mode, unsigned int, dyld_image_info const*)  (in dyld) + 264  [0x195c81c6c]
+    + !         3 dyld4::RemoteNotificationResponder::blockOnSynchronousEvent(unsigned int)  (in dyld) + 48  [0x195c6aa30]
+    + !           3 dyld4::RemoteNotificationResponder::sendMessage(int, unsigned int, mach_msg_header_t*)  (in dyld) + 220  [0x195c6a6a4]
+    + !             3 mach_msg_overwrite  (in dyld) + 244  [0x195cb9b64]
+    + !               3 mach_msg2_internal  (in dyld) + 76  [0x195cb99b8]
+    + !                 3 mach_msg2_trap  (in dyld) + 8  [0x195c3272c]
+    + 1 start  (in dyld) + 4752  [0x1024b83d4]
+    + ! 1 dyld4::ExternallyViewableState::createMinimalInfo(lsl::Allocator&, unsigned long long, char const*, unsigned long long, char const*, DyldSharedCache const*)  (in dyld) + 1276  [0x102500318]
+    + !   1 dyld4::ExternallyViewableState::atlasAddImage(PropertyList::Dictionary&, unsigned long long, char const*)  (in dyld) + 356  [0x102500b2c]
+    + !     1 mach_o::Header::forEachSegment(void (mach_o::Header::SegmentInfo const&, bool&) block_pointer) const  (in dyld) + 124  [0x102532844]
+    + !       1 mach_o::Header::forEachLoadCommand(void (load_command const*, bool&) block_pointer) const  (in dyld) + 208  [0x10252f868]
+    + !         1 <deduplicated_symbol>  (in dyld) + 204  [0x102501b94]
+    + 1 start  (in dyld) + 4076  [0x195c39130]
+    +   1 dyld4::ExternallyViewableState::createMinimalInfo(lsl::Allocator&, unsigned long long, char const*, unsigned long long, char const*, DyldSharedCache const*)  (in dyld) + 1660  [0x195c81498]
+    +     1 dyld4::ExternallyViewableState::triggerNotifications(dyld_image_mode, unsigned int, dyld_image_info const*)  (in dyld) + 264  [0x195c81c6c]
+    +       1 dyld4::RemoteNotificationResponder::blockOnSynchronousEvent(unsigned int)  (in dyld) + 48  [0x195c6aa30]
+    +         1 dyld4::RemoteNotificationResponder::sendMessage(int, unsigned int, mach_msg_header_t*)  (in dyld) + 220  [0x195c6a6a4]
+    +           1 mach_msg_overwrite  (in dyld) + 244  [0x195cb9b64]
+    +             1 mach_msg2_internal  (in dyld) + 76  [0x195cb99b8]
+    +               1 mach_msg2_trap  (in dyld) + 8  [0x195c3272c]
+    1 Thread_12401355   DispatchQueue_1: com.apple.main-thread  (serial)
+      1 start  (in dyld) + 7104  [0x195c39d04]
+        1 dyld4::prepare(dyld4::APIs&, mach_o::Header const*)  (in dyld) + 3112  [0x195c3b158]
+          1 dyld4::APIs::runAllInitializersForMain()  (in dyld) + 88  [0x195c78e54]
+            1 dyld4::PrebuiltLoader::runInitializers(dyld4::RuntimeState&) const  (in dyld) + 44  [0x195c625ec]
+              1 dyld4::Loader::findAndRunAllInitializers(dyld4::RuntimeState&) const  (in dyld) + 172  [0x195c569dc]
+                1 dyld3::MachOAnalyzer::forEachInitializer(Diagnostics&, dyld3::MachOAnalyzer::VMAddrConverter const&, void (unsigned int) block_pointer, void const*) const  (in dyld) + 516  [0x195c94938]
+                  1 mach_o::Header::forEachSection(void (mach_o::Header::SectionInfo const&, bool&) block_pointer) const  (in dyld) + 124  [0x195cb2100]
+                    1 mach_o::Header::forEachLoadCommand(void (load_command const*, bool&) block_pointer) const  (in dyld) + 208  [0x195cb0868]
+                      1 invocation function for block in mach_o::Header::forEachSection(void (mach_o::Header::SectionInfo const&, bool&) block_pointer) const  (in dyld) + 312  [0x195cb3c44]
+                        1 invocation function for block in dyld3::MachOAnalyzer::forEachInitializer(Diagnostics&, dyld3::MachOAnalyzer::VMAddrConverter const&, void (unsigned int) block_pointer, void const*) const  (in dyld) + 324  [0x195c94e48]
+                          1 invocation function for block in dyld4::Loader::findAndRunAllInitializers(dyld4::RuntimeState&) const  (in dyld) + 444  [0x195c56c24]
+                            1 libSystem_initializer  (in libSystem.B.dylib) + 244  [0x1a5ad4350]
+                              1 pthread_install_workgroup_functions_np  (in libsystem_pthread.dylib) + 0  [0x196005438]
+
+Total number in stack (recursive counted multiple, when >=5):
+
+Sort by top of stack, same collapsed (when >= 5):
+        _dyld_start  (in dyld)        313
+        mach_msg2_trap  (in dyld)        14
+
+Binary images description not available
+
