@@ -1,6 +1,5 @@
 use std::collections::HashSet;
 
-/// Линейная дедупликация через HashSet.
 pub fn slow_dedup(values: &[u64]) -> Vec<u64> {
     let mut seen = HashSet::with_capacity(values.len());
     let mut out = Vec::with_capacity(values.len());
@@ -13,11 +12,8 @@ pub fn slow_dedup(values: &[u64]) -> Vec<u64> {
     out
 }
 
-/// Итеративный Фибоначчи.
 pub fn slow_fib(n: u64) -> u64 {
-    if n <= 1 {
-        return n;
-    }
+    if n <= 1 { return n; }
     let (mut a, mut b) = (0, 1);
     for _ in 2..=n {
         let next = a + b;
