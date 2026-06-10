@@ -1,0 +1,17 @@
+sum_even_broken         time:   [6.0157 µs 6.0342 µs 6.0562 µs]
+                        change: [+2.2506% +2.9169% +3.4979%] (p = 0.00 < 0.05)
+                        Performance has regressed.
+Found 3 outliers among 100 measurements (3.00%)
+  2 (2.00%) low mild
+  1 (1.00%) high severe
+
+slow_fib_broken         time:   [10.661 ns 10.698 ns 10.736 ns]
+                        change: [-100.000% -100.000% -100.000%] (p = 0.00 < 0.05)
+                        Performance has improved.
+Found 1 outliers among 100 measurements (1.00%)
+  1 (1.00%) high mild
+
+slow_dedup_broken       time:   [56.625 µs 56.747 µs 56.874 µs]
+                        change: [-96.789% -96.777% -96.765%] (p = 0.00 < 0.05)
+                        Performance has improved.
+
